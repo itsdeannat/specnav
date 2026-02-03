@@ -1,0 +1,10 @@
+{
+  "name": "specnav",
+  "version": "0.1.0",
+  "description": "A lightweight CLI for exploring OpenAPI specs",
+  "scripts": {},
+  "author": "Deanna Thompson",
+  "dependencies": {
+    "standard-version": "^9.5.0"
+  }
+}
