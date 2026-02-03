@@ -1,0 +1,16 @@
+[project]
+name = "specnav"
+version = "0.1.0"
+description = "A lightweight CLI for exploring OpenAPI specs"
+
+dependencies = [
+    "typer>=0.9",
+    "pyyaml",
+]
+
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project.scripts]
+specnav = "specnav.cli:app"
