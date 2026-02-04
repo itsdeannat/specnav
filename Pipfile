@@ -10,6 +10,7 @@ openapi-spec-validator = "*"
 openai = "*"
 python-dotenv = "*"
 pydantic = "*"
+specnav = {file = ".", editable = true}
 
 [dev-packages]
 
