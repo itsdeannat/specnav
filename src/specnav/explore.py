@@ -1,4 +1,3 @@
-import os
 from typing_extensions import Annotated
 import typer
 from internal.oas_loader import load_oas_spec
