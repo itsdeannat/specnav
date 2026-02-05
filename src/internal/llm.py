@@ -1,13 +1,22 @@
-import os
-from dotenv import load_dotenv
-import yaml
 import json
-from schemas.example_request import ExampleRequest
+from dotenv import load_dotenv
 from openai import OpenAI
+from schemas.example_request import ExampleRequest
 
-load_dotenv() 
+load_dotenv()
 
-def generate_request(content: dict, operation: str, path: str):
+def generate_request(content: dict, operation: str, path: str) -> ExampleRequest:
+    """
+    Sends the OpenAPI spec to the LLM to generate an example cURL request.
+    
+    Args:
+        content (dict): The OpenAPI spec as a dictionary
+        operation (str): The operation (e.g. GET, POST, DELETE)
+        path (str): The endpoint (e.g. /photos, /photos/{photoId})
+        
+    Returns:
+        ExampleRequest: The example cURL request
+    """
     
     client = OpenAI()
     
