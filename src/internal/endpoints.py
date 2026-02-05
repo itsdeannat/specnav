@@ -19,6 +19,12 @@ def list_endpoints(spec: dict):
                 
     
 def print_endpoint_table(endpoint: str, paths: str):
+    """Displays the endpoint's available operations and operation summaries.
+
+    Args:
+        endpoint (str): The specific endpoint to display (e.g. /pets, /photos/{photoId})
+        paths (str): The list of paths 
+    """
     
     available_operations = {'get', 'put', 'post', 'patch', 'delete'} 
     
