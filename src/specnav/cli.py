@@ -1,5 +1,6 @@
 import typer
 from .explore import explore
+from .describe import describe
 
 app = typer.Typer()
 
@@ -9,6 +10,7 @@ def main():
     pass
 
 app.command(name="explore")(explore)
+app.command(name="describe")(describe)
 
 
 if __name__ == "__main__":
