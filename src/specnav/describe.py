@@ -51,3 +51,48 @@ def describe (file: Annotated[str, typer.Argument(help="Path to the OpenAPI Spec
         else:
             print("No parameters")
         print()
+        
+    if search_operation == "POST":
+        request_body = operation_item.get("requestBody")
+        
+        if request_body:
+            is_required = request_body.get("required", False)
+            
+            if is_required:                
+                print("Request Body (required): ")
+            else: 
+                print("Request Body (optional): ")
+                
+        content = request_body.get("content", {})
+        for content_type, content_data in content.items():
+            print(f"  Content-Type: {content_type}")
+            print()
+            
+        schema_data = content_data.get("schema")
+        
+        if "$ref" in schema_data:
+                ref = schema_data["$ref"]
+                schema_name = ref.split("/")[-1]
+                schema = spec.get("components", {}).get("schemas", {}).get(schema_name, {})
+        else:
+            schema = schema_data
+    
+        properties = schema.get("properties", {})
+        required_fields = schema.get("required", [])
+        
+        if properties:
+            print("Properties")
+            for prop_name, prop_data in properties.items():
+                prop_type = prop_data.get("type", "unknown")
+                prop_description = prop_data.get("description", "No description")
+                
+                if prop_name in required_fields:
+                    print(f" • {prop_name} ({prop_type} required): {prop_description}")
+                else:
+                    print(f" • {prop_name} ({prop_type} optional): {prop_description}")
+    print()
+    print("Responses")
+    inspect_responses = operation_item.get("responses")
+    for response, response_data in inspect_responses.items():
+        status_description = response_data.get("description")
+        print(f" {response} - {status_description}")
