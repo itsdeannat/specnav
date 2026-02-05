@@ -1,7 +1,6 @@
-import os
+import typer
 from typing_extensions import Annotated
 from internal.oas_loader import load_oas_spec
-import typer
 
 def describe (file: Annotated[str, typer.Argument(help="Path to the OpenAPI Specification file")], search_operation: Annotated[str, typer.Argument(help="The operatiion")], search_path: Annotated[str, typer.Argument(help="Path to inspect")]):
     """Lists details about a given endpoint. 
@@ -27,7 +26,7 @@ def describe (file: Annotated[str, typer.Argument(help="Path to the OpenAPI Spec
         print(f"Summary: {operation_item["summary"]}")
         print()
     except KeyError:
-        pass 
+        pass
     
     if search_operation in ("GET", "DELETE"):
         
